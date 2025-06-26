@@ -1,1 +1,1 @@
-# newsbot---summary
+# newsbot-summary
