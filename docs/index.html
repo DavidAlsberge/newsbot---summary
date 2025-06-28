@@ -1,69 +1,86 @@
+from pathlib import Path
+
+# Regenerate files after reset
+
+# HTML with simulated large story set (partial preview for layout verification)
+html_full_scaled = """
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>🌍 Global News Summary – June 26, 2025</title>
+  <title>🌍 Global News Summary – June 27, 2025</title>
   <style>
-    body { font-family: sans-serif; margin: 40px; line-height: 1.6; background:#fff; color:#333 }
-    h1, h2 { border-bottom:1px solid #ddd; padding-bottom:0.3em }
-    .region { margin-top:2em }
-    .story { margin-bottom:1em }
-    .tags { font-size:0.9em; color:#555 }
-    .headline { font-weight:bold; font-size:1.05em }
-    a { color:#1a0dab; text-decoration:none }
+    body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; color: #333; }
+    h1, h2 { border-bottom: 1px solid #ccc; padding-bottom: 6px; }
+    .section { margin-top: 35px; }
+    .story { margin-bottom: 18px; }
+    .headline { font-weight: bold; }
+    .tags { font-size: 0.9em; color: #666; }
+    a { color: #0645AD; text-decoration: none; }
+    a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
-  <h1>🌍 Global News Summary – June 26, 2025</h1>
+  <h1>🌍 Global News Summary – June 27, 2025</h1>
 
-  <h2>🗞️ Top 10 Global Headlines</h2>
-  <div class="story">
-    <div class="headline"><a href="https://www.reuters.com/world/europe/kremlin-says-no-date-yet-next-round-ukraine-peace-talks-2025-06-26/">Kremlin says no date yet for next Ukraine peace talks</a></div>
-    <div class="tags">🌐 Global • ⚖️ Diplomacy • 🇷🇺 Russia/Ukraine</div>
-    <p>The Kremlin confirmed today that no date is yet set for the next round of peace negotiations with Ukraine 1.</p>
-  </div>
-  <div class="story">
-    <div class="headline"><a href="https://www.reuters.com/world/china/global-markets-wrapup-1-2025-06-26/">Asian stocks hesitant, dollar dips amid US Fed uncertainty</a></div>
-    <div class="tags">🌐 Global • 📉 Markets • 🌏 Asia</div>
-    <p>Asian markets waver as the dollar weakens amid speculation over US Fed leadership changes 2.</p>
-  </div>
-  <div class="story">
-    <div class="headline"><a href="https://www.reuters.com/world/americas/ts...tsx">Canada's TSX rises as mining stocks rally; US Fed in focus</a></div>
-    <div class="tags">🌐 Global • 📈 Markets • 🇨🇦 Canada</div>
-    <p>Canada’s TSX opened higher on mining gains, as investors evaluate US Federal Reserve developments 3.</p>
-  </div>
-  <div class="story">
-    <div class="headline"><a href="https://www.reuters.com/business/energy/oil-rises-draw-us-crude-stocks-signals-firm-demand-2025-06-26/">Oil rebounds as investors eye demand signals</a></div>
-    <div class="tags">🌐 Global • 🛢️ Energy • 📊 Markets</div>
-    <p>Oil prices rose today as investors shift focus from geopolitical risks to demand fundamentals 4.</p>
+  <div class="section">
+    <h2>🗞️ Top 10 Global Headlines</h2>
+""" + "\n".join(
+    f"""<div class="story">
+      <div class="headline"><a href="https://example.com/global{i}">Global Headline #{i}</a></div>
+      <div class="tags">🌐 Global • 📌 Issue • 🔗 Tag</div>
+      <p>Summary of global headline #{i} goes here...</p>
+    </div>"""
+    for i in range(1, 11)
+) + """
   </div>
 
-  <div class="region">
+  <div class="section">
     <h2>🌎 North America</h2>
-    <div class="story">
-      <div class="headline"><a href="https://www.reuters.com/world/us/us-weekly-jobless-claims-fall-unemployment-rolls-swelling-2025-06-26/">US weekly jobless claims fall, but unemployment rolls grow</a></div>
-      <div class="tags">🇺🇸 USA • 🏛️ Economy • 📉 Labor</div>
-      <p>US jobless claims declined this week, though unemployment rolls continued to rise 5.</p>
-    </div>
+""" + "\n".join(
+    f"""<div class="story">
+      <div class="headline"><a href="https://example.com/na{i}">North America Headline #{i}</a></div>
+      <div class="tags">🇺🇸 Region • 📌 Topic • 🔖 Label</div>
+      <p>Brief summary for NA headline #{i}.</p>
+    </div>"""
+    for i in range(1, 6)
+) + """
   </div>
 
-  <div class="region">
+  <div class="section">
     <h2>🌍 Europe</h2>
-    <div class="story">
-      <div class="headline"><a href="https://www.reuters.com/world/europes-top-rights-court-rules-against-france-racial-profiling-case-2025-06-26/">Europe’s rights court rules against France in racial profiling case</a></div>
-      <div class="tags">🇪🇺 EU • ⚖️ Justice • 🌍 Europe</div>
-      <p>The European Court of Human Rights found France guilty of racial profiling in a landmark ruling 6.</p>
-    </div>
+""" + "\n".join(
+    f"""<div class="story">
+      <div class="headline"><a href="https://example.com/eu{i}">Europe Headline #{i}</a></div>
+      <div class="tags">🇪🇺 EU • ⚖️ Policy • 🌱 Env</div>
+      <p>Short summary for Europe headline #{i}.</p>
+    </div>"""
+    for i in range(1, 6)
+) + """
   </div>
-
-  <div class="region">
-    <h2>🌏 Asia</h2>
-    <div class="story">
-      <div class="headline"><a href="https://www.reuters.com/world/americas/global-cocaine-boom-keeps-setting-new-records-un-report-says-2025-06-26/">Global cocaine trade sets new records: UN report</a></div>
-      <div class="tags">🇻🇦 Asia • 🚨 Crime • 📈 Economics</div>
-      <p>UN data shows the global cocaine market hit record highs in production and use last year 7.</p>
-    </div>
-  </div>
-
 </body>
 </html>
+"""
+
+# CSV matching the above structure
+csv_full_scaled = "Date,Region,Country,Topic,Headline,Summary,Source Link,Tags\n"
+csv_full_scaled += "\n".join(
+    f"2025-06-27,Global,Various,Topic,Global Headline #{i},Summary of global headline #{i},https://example.com/global{i},Global,News,Tag"
+    for i in range(1, 11)
+)
+csv_full_scaled += "\n" + "\n".join(
+    f"2025-06-27,North America,USA,Policy,North America Headline #{i},Brief summary for NA headline #{i},https://example.com/na{i},NA,Policy,Label"
+    for i in range(1, 6)
+)
+csv_full_scaled += "\n" + "\n".join(
+    f"2025-06-27,Europe,EU,Legislation,Europe Headline #{i},Short summary for Europe headline #{i},https://example.com/eu{i},EU,Env,Law"
+    for i in range(1, 6)
+)
+
+# Save to files
+html_path = Path("/mnt/data/index_global_news_full_2025-06-27.html")
+csv_path = Path("/mnt/data/newsbot_log_full_2025-06-27.csv")
+html_path.write_text(html_full_scaled)
+csv_path.write_text(csv_full_scaled)
+
+[str(html_path), str(csv_path)]
