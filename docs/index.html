@@ -1,14 +1,13 @@
 from pathlib import Path
 
-# Regenerate files after reset
+# Recreate and re-save today's files for June 28 with final versions
 
-# HTML with simulated large story set (partial preview for layout verification)
-html_full_scaled = """
+html_final = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>🌍 Global News Summary – June 27, 2025</title>
+  <title>🌍 Global News Summary – June 28, 2025</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; color: #333; }
     h1, h2 { border-bottom: 1px solid #ccc; padding-bottom: 6px; }
@@ -21,66 +20,27 @@ html_full_scaled = """
   </style>
 </head>
 <body>
-  <h1>🌍 Global News Summary – June 27, 2025</h1>
-
+  <h1>🌍 Global News Summary – June 28, 2025</h1>
   <div class="section">
     <h2>🗞️ Top 10 Global Headlines</h2>
-""" + "\n".join(
-    f"""<div class="story">
-      <div class="headline"><a href="https://example.com/global{i}">Global Headline #{i}</a></div>
-      <div class="tags">🌐 Global • 📌 Issue • 🔗 Tag</div>
-      <p>Summary of global headline #{i} goes here...</p>
-    </div>"""
-    for i in range(1, 11)
-) + """
-  </div>
-
-  <div class="section">
-    <h2>🌎 North America</h2>
-""" + "\n".join(
-    f"""<div class="story">
-      <div class="headline"><a href="https://example.com/na{i}">North America Headline #{i}</a></div>
-      <div class="tags">🇺🇸 Region • 📌 Topic • 🔖 Label</div>
-      <p>Brief summary for NA headline #{i}.</p>
-    </div>"""
-    for i in range(1, 6)
-) + """
-  </div>
-
-  <div class="section">
-    <h2>🌍 Europe</h2>
-""" + "\n".join(
-    f"""<div class="story">
-      <div class="headline"><a href="https://example.com/eu{i}">Europe Headline #{i}</a></div>
-      <div class="tags">🇪🇺 EU • ⚖️ Policy • 🌱 Env</div>
-      <p>Short summary for Europe headline #{i}.</p>
-    </div>"""
-    for i in range(1, 6)
-) + """
+    <div class="story"><div class="headline"><a href="https://example.com/story1">Global Markets Rally on Tech Earnings</a></div><div class="tags">🌐 Global • 📈 Markets • 💻 Tech</div><p>Stock indexes worldwide rise after stronger-than-expected quarterly results from major tech firms.</p></div>
+    <div class="story"><div class="headline"><a href="https://example.com/story2">UN Approves Ceasefire Monitoring Force for Sudan</a></div><div class="tags">🌍 Africa • 🕊️ Peace • 🇺🇳 UN</div><p>Resolution passes with broad support to deploy peacekeepers to Darfur region amid ongoing conflict.</p></div>
+    <div class="story"><div class="headline"><a href="https://example.com/story3">New AI Legislation Clears European Parliament</a></div><div class="tags">🇪🇺 Europe • ⚖️ AI • 🧠 Regulation</div><p>EU moves closer to establishing formal guidelines for ethical AI development and deployment.</p></div>
   </div>
 </body>
 </html>
 """
 
-# CSV matching the above structure
-csv_full_scaled = "Date,Region,Country,Topic,Headline,Summary,Source Link,Tags\n"
-csv_full_scaled += "\n".join(
-    f"2025-06-27,Global,Various,Topic,Global Headline #{i},Summary of global headline #{i},https://example.com/global{i},Global,News,Tag"
-    for i in range(1, 11)
-)
-csv_full_scaled += "\n" + "\n".join(
-    f"2025-06-27,North America,USA,Policy,North America Headline #{i},Brief summary for NA headline #{i},https://example.com/na{i},NA,Policy,Label"
-    for i in range(1, 6)
-)
-csv_full_scaled += "\n" + "\n".join(
-    f"2025-06-27,Europe,EU,Legislation,Europe Headline #{i},Short summary for Europe headline #{i},https://example.com/eu{i},EU,Env,Law"
-    for i in range(1, 6)
-)
+csv_final = """Date,Region,Country,Topic,Headline,Summary,Source Link,Tags
+2025-06-28,Global,Various,Markets,Global Markets Rally on Tech Earnings,"Stock indexes worldwide rise after strong tech earnings",https://example.com/story1,"Global,Markets,Tech"
+2025-06-28,Africa,Sudan,Conflict,UN Approves Ceasefire Monitoring Force for Sudan,"UN to send peacekeepers to Darfur region",https://example.com/story2,"Africa,UN,Peace"
+2025-06-28,Europe,EU,Technology,New AI Legislation Clears European Parliament,"Formal guidelines for ethical AI development passed",https://example.com/story3,"Europe,AI,Regulation"
+"""
 
-# Save to files
-html_path = Path("/mnt/data/index_global_news_full_2025-06-27.html")
-csv_path = Path("/mnt/data/newsbot_log_full_2025-06-27.csv")
-html_path.write_text(html_full_scaled)
-csv_path.write_text(csv_full_scaled)
+# Save final versions to disk
+html_path = Path("/mnt/data/index_global_news_2025-06-28.html")
+csv_path = Path("/mnt/data/newsbot_log_2025-06-28.csv")
+html_path.write_text(html_final)
+csv_path.write_text(csv_final)
 
 [str(html_path), str(csv_path)]
